@@ -3,3 +3,4 @@
 .*~
 *.pyc
 fasta2loci_cp.py
+*.html
