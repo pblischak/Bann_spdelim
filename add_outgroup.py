@@ -30,6 +30,7 @@ from __future__ import print_function
 from Bio import SeqIO
 import argparse
 from sys import argv, exit
+import os
 
 ################ OLD CODE ################
 # make an index for accessing the scaffolds of the reference genome
@@ -93,6 +94,16 @@ if __name__ == "__main__":
 
     with open(blastfile, 'r') as b_in:
         blast_output = b_in.readlines()[:-1]
+
+    # Make FASTA/ directory for new files
+    # Check if it exists first.
+    if not os.path.exists("./FASTA"):
+        os.makedirs("./FASTA")
+    else:
+        print("\nERROR:")
+        print("  Output directory for FASTA files alread exists.")
+        print("  Please rename it or move it to a difference folder.\n")
+        sys.exit(-1)
 
     for hit in blast_output:
         info   = hit.split()

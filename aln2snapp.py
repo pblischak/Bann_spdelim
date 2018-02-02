@@ -3,7 +3,14 @@
 """
 << aln2snapp.py >>
 
+Take the aligned FASTA files with the outgroup sequence added (add_outgroup.py),
+randomly select one SNP per locus, and convert to SNAPP format. The result is
+written to a NEXUS file. The script will automatically read in all '*.aln' files,
+which should have been generated using Muscle after adding the outgroup sequence.
 
+Arguments
+---------
+  - outfile <string> : the name of the output NEXUS file
 """
 
 from __future__ import print_function
