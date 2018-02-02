@@ -94,7 +94,7 @@ blast2loci.py -i Bann_Rapid2.loci -b Bann_Rapid2.txt -o Bann_Rapid2-decon.loci
 # 1. Make a database for the outgroup and BLAST the RAD loci
 #    against this reference to add the homologous regions.
 makeblastdb -dbtype nucl -in aiptasia_genome.scaffolds.fa -out Aiptasia
-blastn -db Aiptasia -query Bann_Rapid2.fasta -out BA_FULL_snapp.txt
+blastn -db Aiptasia -query Bann_Rapid2.fasta -out BA_FULL_snapp.txt -outfmt 6
 
 # 2. Add outgroup sequences using BLAST searches of
 #    the RAD loci. These are all written to new FASTA
