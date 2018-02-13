@@ -3,8 +3,8 @@
 """
 << blast2loci.py >>
 
-Take the results of BLASTing the pyRAD loci against the algal
-genome to remove potential contaminants and write a new .loci
+Take the results of BLASTing the pyRAD loci against the anemone
+genome to extract cnidarian-only loci and write a new .loci
 file.
 
 Arguments

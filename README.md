@@ -50,12 +50,14 @@ parse_loci.py
 ### `parse_loci.py`
 
 Convert a `.loci` file from pyRAD to a FASTA file for BLASTing
-against the algal genome to identify contaminants.
+against the anemone/reference genome to identify cnidarian-only
+loci.
 
 ### `blast2loci.py`
 
-Take BLAST output for contaminant identification and make a new `.loci` file that
-only contains loci that were not algal in origin.
+Take BLAST output for identifying anemone loci and make a new
+`.loci` file that only contains loci that were cnidarian in
+origin.
 
 ### `add_outgroup.py`
 
@@ -70,19 +72,19 @@ we randomly sample a single SNP.
 ## Data Processing Steps
 
 ```bash
-#####################################
-#### Removing algal contaminants ####
-#####################################
+##########################################
+#### Extracting anemone specific loci ####
+##########################################
 
 # 1. Get loci to BLAST against outgroup genome
 parse_loci.py -i Bann_Rapid2.loci -o Bann_Rapid2.fasta
 
 # 2. Run BLAST by making a database and aligning ddRADseq
 #    loci with BLASTN.
-makeblastdb -dbtype nucl -in Symbiodinium.fasta -out Symbiodinium
-blastn -db Symbiodinium -query Bann_Rapid2.fasta -out Bann_Rapid2.txt -outfmt 6
+makeblastdb -dbtype nucl -in anemone-ref.fasta -out Anemone
+blastn -db Anemone -query Bann_Rapid2.fasta -out Bann_Rapid2.txt -outfmt 6
 
-# 3. Remove any loci that matched the algal symbiont
+# 3. Extract loci that matched the Anemone reference
 #    and reformat in .loci format to re-run step 7
 #    in pyRAD.
 blast2loci.py -i Bann_Rapid2.loci -b Bann_Rapid2.txt -o Bann_Rapid2-decon.loci
