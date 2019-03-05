@@ -113,3 +113,9 @@ for f in *.fasta; do muscle -in $f -out $f.aln; done
 #    by grabbing one randomly selected SNP per locus.
 aln2snapp.py -o BANN_FULL_snapp.nex
 ```
+
+### Scripts for Running *Moments*
+
+We have also included the scripts that we used to run *Moments* for demographic inference.
+The models are implemented in the `demographic_models.py` file, and the actual analysis and
+optimization is run using the `run_moments.py` script.
